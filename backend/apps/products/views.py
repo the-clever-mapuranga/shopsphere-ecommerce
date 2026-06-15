@@ -6,6 +6,7 @@ from .serializers import ProductSerializer
 
 class ProductListAPIView(
     generics.ListAPIView
+    
 ):
     queryset = Product.objects.filter(
         is_active=True

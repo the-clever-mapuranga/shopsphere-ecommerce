@@ -27,6 +27,7 @@
 ### Next Steps
 
 - Setup Django backend
+
 # Sprint 2
 
 ## Completed
@@ -60,3 +61,16 @@
 
 - Configure PostgreSQL
 - Create Django apps
+
+# Cart API
+
+## What is a Serializer?
+
+A serializer validates incoming data before business logic executes.
+
+## Responsibilities
+
+- Validation
+- Transformation
+- Serialization
+- Deserialization

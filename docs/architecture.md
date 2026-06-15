@@ -11,14 +11,14 @@ ShopSphere is a full-stack e-commerce platform built using:
 ## High Level Architecture
 
 React Frontend
-      |
-      v
+|
+v
 Django REST API
-      |
-      v
+|
+v
 Business Logic Layer
-      |
-      v
+|
+v
 PostgreSQL Database
 
 ## Modules
@@ -29,3 +29,16 @@ PostgreSQL Database
 4. Shopping Cart
 5. Orders
 6. Admin Dashboard
+   Category
+   │
+   ▼
+   Product
+   │
+   ▼
+   CartItem
+   │
+   ▼
+   Cart
+   │
+   ▼
+   User
