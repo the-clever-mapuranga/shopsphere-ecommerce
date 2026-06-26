@@ -1,0 +1,25 @@
+.category{
+display:inline-block;
+background:#eef2ff;
+color:#4f46e5;
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+margin-bottom:12px;
+}
+
+.wishlist-btn{
+margin-top:15px;
+width:100%;
+padding:12px;
+background:#ec4899;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+.wishlist-btn:hover{
+background:#db2777;
+}

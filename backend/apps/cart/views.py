@@ -6,17 +6,34 @@ from rest_framework.views import APIView
 from apps.products.models import Product
 
 from .models import Cart, CartItem
-from .serializers import AddToCartSerializer
+from .serializers import (
+    AddToCartSerializer,
+    CartItemSerializer,
+)
 
 
 class CartAPIView(APIView):
 
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
-        return Response(
-            {
-                "message": "Cart endpoint working"
-            }
+
+        print("=" * 50)
+        print("USER:", request.user)
+        print("AUTH:", request.auth)
+        print("IS AUTHENTICATED:", request.user.is_authenticated)
+        print("=" * 50)
+
+        cart, created = Cart.objects.get_or_create(
+            user=request.user
         )
+
+        serializer = CartItemSerializer(
+            cart.items.all(),
+            many=True
+        )
+
+        return Response(serializer.data)
 
 
 class AddToCartAPIView(APIView):
@@ -29,36 +46,64 @@ class AddToCartAPIView(APIView):
             data=request.data
         )
 
-        serializer.is_valid(
-            raise_exception=True
-        )
-
-        product_id = serializer.validated_data["product_id"]
-        quantity = serializer.validated_data["quantity"]
+        serializer.is_valid(raise_exception=True)
 
         product = Product.objects.get(
-            id=product_id
+            id=serializer.validated_data["product_id"]
         )
 
         cart, created = Cart.objects.get_or_create(
             user=request.user
         )
 
-        cart_item, item_created = CartItem.objects.get_or_create(
+        item, created = CartItem.objects.get_or_create(
             cart=cart,
             product=product,
             defaults={
-                "quantity": quantity
+                "quantity": serializer.validated_data["quantity"]
             }
         )
 
-        if not item_created:
-            cart_item.quantity += quantity
-            cart_item.save()
+        if not created:
+            item.quantity += serializer.validated_data["quantity"]
+            item.save()
 
         return Response(
-            {
-                "message": "Product added to cart"
-            },
+            {"message": "Added to cart"},
             status=status.HTTP_201_CREATED
         )
+
+
+class RemoveCartItemAPIView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, item_id):
+
+        item = CartItem.objects.get(
+            id=item_id,
+            cart__user=request.user
+        )
+
+        item.delete()
+
+        return Response({"message": "Removed"})
+
+
+class UpdateCartItemAPIView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, item_id):
+
+        quantity = request.data.get("quantity")
+
+        item = CartItem.objects.get(
+            id=item_id,
+            cart__user=request.user
+        )
+
+        item.quantity = quantity
+        item.save()
+
+        return Response({"message": "Updated"})

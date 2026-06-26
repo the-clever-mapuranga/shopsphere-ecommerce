@@ -4,9 +4,10 @@ function MainLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main>
+
+      <div className="container">
         {children}
-      </main>
+      </div>
     </>
   );
 }

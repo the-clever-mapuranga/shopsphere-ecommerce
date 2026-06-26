@@ -1,9 +1,9 @@
+
 from django.db import transaction
 from django.core.exceptions import ValidationError
 
 from apps.orders.models import Order, OrderItem
 from apps.cart.models import Cart
-from apps.products.models import Product
 
 
 class CheckoutService:
@@ -12,57 +12,49 @@ class CheckoutService:
     @transaction.atomic
     def checkout(user):
 
-        # 1. Get cart
         try:
             cart = Cart.objects.get(user=user)
+
         except Cart.DoesNotExist:
             raise ValidationError("Cart is empty")
 
         cart_items = cart.items.all()
 
-        if not cart_items:
-            raise ValidationError("No items in cart")
+        if not cart_items.exists():
+            raise ValidationError("Your cart is empty.")
 
-        # 2. Create order
         order = Order.objects.create(
             user=user,
             total_price=0,
-            status="PENDING"
+            status="PENDING",
         )
 
-        total_price = 0
+        total = 0
 
-        # 3. Process items
         for item in cart_items:
+
             product = item.product
 
-            # stock validation
-            if product.stock < item.quantity:
+            if product.stock_quantity < item.quantity:
                 raise ValidationError(
-                    f"Not enough stock for {product.name}"
+                    f"Only {product.stock_quantity} item(s) left for {product.name}"
                 )
 
-            # price snapshot
-            item_price = product.price * item.quantity
-            total_price += item_price
-
-            # create order item
             OrderItem.objects.create(
                 order=order,
                 product=product,
                 quantity=item.quantity,
-                price=product.price
+                price=product.price,
             )
 
-            # reduce stock
-            product.stock -= item.quantity
+            total += product.price * item.quantity
+
+            product.stock_quantity -= item.quantity
             product.save()
 
-        # 4. Update order total
-        order.total_price = total_price
+        order.total_price = total
         order.save()
 
-        # 5. Clear cart
         cart.items.all().delete()
 
         return order
