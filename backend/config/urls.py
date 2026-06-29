@@ -30,6 +30,11 @@ urlpatterns = [
         include("apps.orders.urls")
     ),
 
+    path(
+        "api/security/",
+        include("apps.security.urls")
+    ),
+
 ]
 
 if settings.DEBUG:

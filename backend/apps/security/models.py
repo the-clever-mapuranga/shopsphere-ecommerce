@@ -37,3 +37,15 @@ class DiscountRule(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContactMessage(models.Model):
+    first_name = models.CharField(max_length=120)
+    last_name = models.CharField(max_length=120)
+    email = models.EmailField()
+    message = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Contact from {self.first_name} {self.last_name} <{self.email}>"
