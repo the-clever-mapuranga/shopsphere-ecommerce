@@ -60,17 +60,6 @@
 ## Next Step
 
 - Configure PostgreSQL
+<<<<<<< HEAD
 - Create Django apps
-
-# Cart API
-
-## What is a Serializer?
-
-A serializer validates incoming data before business logic executes.
-
-## Responsibilities
-
-- Validation
-- Transformation
-- Serialization
-- Deserialization
+ - Create Django apps
