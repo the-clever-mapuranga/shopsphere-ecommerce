@@ -7,6 +7,7 @@ import ProductDetail from "../pages/ProductDetail";
 import Wishlist from "../pages/Wishlist";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ContactForm from "../pages/ContactForm";
 
 /* User Pages */
 import Cart from "../pages/Cart";
@@ -51,6 +52,8 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
 
       <Route path="/register" element={<Register />} />
+
+      <Route path="/contact" element={<ContactForm />} />
 
       {/* User */}
 

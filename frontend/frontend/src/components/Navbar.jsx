@@ -35,6 +35,8 @@ function Navbar() {
 
         <Link style={linkStyle} to="/products">Products</Link>
 
+        <Link style={linkStyle} to="/contact">Contact</Link>
+
         <Link style={linkStyle} to="/wishlist">Wishlist</Link>
 
         <Link style={linkStyle} to="/cart">Cart</Link>
