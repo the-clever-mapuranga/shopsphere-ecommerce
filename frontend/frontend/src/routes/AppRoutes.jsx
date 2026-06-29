@@ -26,6 +26,7 @@ import Inventory from "../pages/Inventory";
 import Coupons from "../pages/Coupons";
 import Analytics from "../pages/Analytics";
 import Security from "../pages/Security";
+import AdminCreateUser from "../pages/AdminCreateUser";
 
 /* Protected Route */
 import ProtectedRoute from "../components/ProtectedRoute";
@@ -178,6 +179,15 @@ function AppRoutes() {
           <ProtectedRoute>
             <Security />
           </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/admin/users/create"
+        element={
+          <AdminRoute>
+            <AdminCreateUser />
+          </AdminRoute>
         }
       />
 

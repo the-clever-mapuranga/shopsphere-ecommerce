@@ -56,6 +56,10 @@ function AdminSidebar() {
           👥 Users
         </Link>
 
+        <Link to="/admin/users/create" style={linkStyle}>
+          ➕ Create User
+        </Link>
+
         <Link to="/admin/roles" style={linkStyle}>
           🔐 Roles
         </Link>
