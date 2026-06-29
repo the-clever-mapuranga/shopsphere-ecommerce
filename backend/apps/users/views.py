@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render
 
 # Create your views here.
@@ -16,3 +15,4 @@ class HealthCheckView(APIView):
                 "service": "shopsphere-api"
             }
         )
+

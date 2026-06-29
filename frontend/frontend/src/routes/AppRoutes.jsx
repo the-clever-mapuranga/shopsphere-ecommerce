@@ -15,6 +15,7 @@ import Dashboard from "../pages/Dashboard";
 import Orders from "../pages/Orders";
 import Profile from "../pages/Profile";
 import OrderSuccess from "../pages/OrderSuccess";
+import Report from "../pages/Report";
 
 /* Admin Pages */
 import AdminProductTable from "../pages/AdminProductTable";
@@ -101,6 +102,15 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/report"
+        element={
+          <ProtectedRoute>
+            <Report />
           </ProtectedRoute>
         }
       />

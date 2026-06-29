@@ -47,6 +47,10 @@ function Navbar() {
               Dashboard
             </Link>
 
+            <Link style={linkStyle} to="/report">
+              Report
+            </Link>
+
             <Link style={linkStyle} to="/orders">
               Orders
             </Link>
