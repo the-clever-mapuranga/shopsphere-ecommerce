@@ -21,3 +21,11 @@ export const logout = () => {
 export const getAccessToken = () => {
   return localStorage.getItem("access");
 };
+
+export const isAdmin = () => {
+  return localStorage.getItem("is_staff") === "true";
+};
+
+export const setIsAdmin = (value) => {
+  localStorage.setItem("is_staff", value ? "true" : "false");
+};

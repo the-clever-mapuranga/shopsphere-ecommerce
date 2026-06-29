@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { isAuthenticated, logout } from "../utils/auth";
+import { isAuthenticated, logout, isAdmin } from "../utils/auth";
 
 function Navbar() {
 
@@ -51,13 +51,21 @@ function Navbar() {
               Report
             </Link>
 
-            <Link style={linkStyle} to="/orders">
-              Orders
-            </Link>
+                {isAdmin() && (
+                  <Link style={linkStyle} to="/orders">
+                    Orders
+                  </Link>
+                )}
 
             <Link style={linkStyle} to="/profile">
               Profile
             </Link>
+
+            {isAdmin() && (
+              <Link style={linkStyle} to="/report">
+                Report
+              </Link>
+            )}
 
             <button
               onClick={handleLogout}

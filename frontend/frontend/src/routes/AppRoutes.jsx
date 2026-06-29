@@ -16,6 +16,7 @@ import Orders from "../pages/Orders";
 import Profile from "../pages/Profile";
 import OrderSuccess from "../pages/OrderSuccess";
 import Report from "../pages/Report";
+import AdminRoute from "../components/AdminRoute";
 
 /* Admin Pages */
 import AdminProductTable from "../pages/AdminProductTable";
@@ -109,9 +110,9 @@ function AppRoutes() {
       <Route
         path="/report"
         element={
-          <ProtectedRoute>
+          <AdminRoute>
             <Report />
-          </ProtectedRoute>
+          </AdminRoute>
         }
       />
 

@@ -31,6 +31,14 @@ function Login() {
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
 
+      // fetch current user info (is_staff) and store it for frontend role checks
+      try {
+        const me = await API.get("/me/");
+        localStorage.setItem("is_staff", me.data.is_staff ? "true" : "false");
+      } catch (err) {
+        console.warn("Could not fetch current user info", err);
+      }
+
       console.log(
         "Saved Access Token:",
         localStorage.getItem("access")
