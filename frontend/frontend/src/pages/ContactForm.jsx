@@ -26,26 +26,26 @@ function ContactForm() {
   };
 
   return (
-    <div style={{ maxWidth: 640, margin: "24px auto", padding: 16 }}>
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: "flex", gap: 8, marginBottom: 8 }}>
-          <input name="first_name" placeholder="First name" value={form.first_name} onChange={handleChange} required style={{ flex: 1, padding: 8 }} />
-          <input name="last_name" placeholder="Last name" value={form.last_name} onChange={handleChange} required style={{ flex: 1, padding: 8 }} />
-        </div>
+    <div className="container page">
+      <div className="card">
+        <h1 className="h1">Contact Us</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-row" style={{ marginBottom: 12 }}>
+            <input className="form-input" name="first_name" placeholder="First name" value={form.first_name} onChange={handleChange} required />
+            <input className="form-input" name="last_name" placeholder="Last name" value={form.last_name} onChange={handleChange} required />
+          </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required style={{ width: "100%", padding: 8 }} />
-        </div>
+          <div style={{ marginBottom: 12 }}>
+            <input className="form-input" name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+          </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <textarea name="message" placeholder="Message" value={form.message} onChange={handleChange} required style={{ width: "100%", minHeight: 120, padding: 8 }} />
-        </div>
+          <div style={{ marginBottom: 12 }}>
+            <textarea className="form-input" name="message" placeholder="Message" value={form.message} onChange={handleChange} required style={{ minHeight: 140 }} />
+          </div>
 
-        <button type="submit" disabled={loading} style={{ padding: "10px 16px", background: "#4f46e5", color: "white", border: "none", borderRadius: 6 }}>
-          {loading ? "Sending..." : "Send Message"}
-        </button>
-      </form>
+          <button type="submit" disabled={loading} className="btn btn-primary">{loading ? "Sending..." : "Send Message"}</button>
+        </form>
+      </div>
     </div>
   );
 }

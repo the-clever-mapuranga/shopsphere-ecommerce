@@ -26,24 +26,32 @@ function AdminCreateUser() {
   };
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Create User</h1>
+    <div className="container page">
+      <div className="card" style={{ maxWidth: 520 }}>
+        <h1 className="h1">Create User</h1>
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: 480 }}>
-        <input name="username" value={form.username} onChange={handleChange} placeholder="Username" required style={{ width: "100%", padding: 8, marginBottom: 8 }} />
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: 10 }}>
+            <input className="form-input" name="username" value={form.username} onChange={handleChange} placeholder="Username" required />
+          </div>
 
-        <input name="email" value={form.email} onChange={handleChange} placeholder="Email" type="email" required style={{ width: "100%", padding: 8, marginBottom: 8 }} />
+          <div style={{ marginBottom: 10 }}>
+            <input className="form-input" name="email" value={form.email} onChange={handleChange} placeholder="Email" type="email" required />
+          </div>
 
-        <input name="password" value={form.password} onChange={handleChange} placeholder="Password" type="password" required style={{ width: "100%", padding: 8, marginBottom: 8 }} />
+          <div style={{ marginBottom: 10 }}>
+            <input className="form-input" name="password" value={form.password} onChange={handleChange} placeholder="Password" type="password" required />
+          </div>
 
-        <label style={{ display: "block", marginBottom: 12 }}>
-          <input type="checkbox" name="is_staff" checked={form.is_staff} onChange={handleChange} /> Admin user
-        </label>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <input type="checkbox" name="is_staff" checked={form.is_staff} onChange={handleChange} /> <span>Admin user</span>
+            </label>
+          </div>
 
-        <button type="submit" disabled={loading} style={{ padding: "8px 16px", background: "#4f46e5", color: "white", border: "none", borderRadius: 6 }}>
-          {loading ? "Creating..." : "Create User"}
-        </button>
-      </form>
+          <button type="submit" disabled={loading} className="btn btn-primary">{loading ? "Creating..." : "Create User"}</button>
+        </form>
+      </div>
     </div>
   );
 }

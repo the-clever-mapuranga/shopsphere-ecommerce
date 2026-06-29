@@ -11,87 +11,49 @@ function Navbar() {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 40px",
-        background: "#4f46e5",
-      }}
-    >
-      <h2 style={{ color: "white" }}>
-        ShopSphere
-      </h2>
+    return (
+      <nav className="site-nav">
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h2 className="site-title">ShopSphere</h2>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          alignItems: "center",
-        }}
-      >
-        <Link style={linkStyle} to="/">Home</Link>
+          <div className="nav-links">
+            <Link className="link" to="/">Home</Link>
 
-        <Link style={linkStyle} to="/products">Products</Link>
+            <Link className="link" to="/products">Products</Link>
 
-        <Link style={linkStyle} to="/contact">Contact</Link>
+            <Link className="link" to="/wishlist">Wishlist</Link>
 
-        <Link style={linkStyle} to="/wishlist">Wishlist</Link>
+            <Link className="link" to="/cart">Cart</Link>
 
-        <Link style={linkStyle} to="/cart">Cart</Link>
+            <Link className="link" to="/checkout">Checkout</Link>
 
-        <Link style={linkStyle} to="/checkout">Checkout</Link>
-
-        {isAuthenticated() ? (
-          <>
-            <Link style={linkStyle} to="/dashboard">
-              Dashboard
-            </Link>
-
-            <Link style={linkStyle} to="/report">
-              Report
-            </Link>
+            {isAuthenticated() ? (
+              <>
+                <Link className="link" to="/dashboard">Dashboard</Link>
 
                 {isAdmin() && (
-                  <Link style={linkStyle} to="/orders">
-                    Orders
-                  </Link>
+                  <Link className="link" to="/orders">Orders</Link>
                 )}
 
-            <Link style={linkStyle} to="/profile">
-              Profile
-            </Link>
+                <Link className="link" to="/profile">Profile</Link>
 
-            {isAdmin() && (
-              <Link style={linkStyle} to="/report">
-                Report
-              </Link>
+                {isAdmin() && (
+                  <Link className="link" to="/report">Report</Link>
+                )}
+
+                <button onClick={handleLogout} className="btn btn-danger">Logout</button>
+              </>
+            ) : (
+              <>
+                <Link className="link" to="/login">Login</Link>
+
+                <Link className="link" to="/register">Register</Link>
+              </>
             )}
-
-            <button
-              onClick={handleLogout}
-              style={{
-                background: "#ef4444",
-                color: "white",
-                border: "none",
-                padding: "10px 18px",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link style={linkStyle} to="/login">
-              Login
-            </Link>
-
-            <Link style={linkStyle} to="/register">
-              Register
-            </Link>
+          </div>
+        </div>
+      </nav>
+    );
           </>
         )}
       </div>
